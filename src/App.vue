@@ -1,18 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <PickGender></PickGender>
+    <TextName></TextName><br>
+    <TextLastName></TextLastName><br>
+    <TextPhone></TextPhone><br>
+    <TextDescription></TextDescription><br>
+    <button>Подтвердить</button>
   </div>
 </template>
 
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PickGender from '@/components/PickGender'
+import TextName from '@/components/TextName'
+import TextLastName from "@/components/TextLastName";
+import TextPhone from '@/components/TextPhone'
+import TextDescription from '@/components/TextDescription'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    PickGender,
+    TextName,
+    TextLastName,
+    TextPhone,
+    TextDescription
+  },
+
 }
 </script>
 
