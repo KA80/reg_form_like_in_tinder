@@ -1,12 +1,16 @@
 <template>
   <label>
-    <input placeholder="Имя">
+    <input placeholder="Имя" v-model="name">
   </label>
 </template>
 
 <script>
 export default {
-  name: "TextName"
+  data() {
+    return {
+      name: ''
+    }
+  }
 }
 </script>
 

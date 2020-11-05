@@ -1,12 +1,16 @@
 <template>
   <label>
-    <input placeholder="Фамилия">
+    <input placeholder="Фамилия" v-model="last_name">
   </label>
 </template>
 
 <script>
 export default {
-  name: "TextLastName"
+  data() {
+    return {
+      last_name: ''
+    };
+  }
 }
 </script>
 

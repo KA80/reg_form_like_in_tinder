@@ -1,13 +1,17 @@
 <template>
   <label>
-    <input placeholder="Номер телефона">
+    <input placeholder="Номер телефона" v-model="phone">
   </label>
 
 </template>
 
 <script>
 export default {
-  name: "TextPhone"
+  data() {
+    return {
+      phone: ''
+    }
+  }
 }
 </script>
 

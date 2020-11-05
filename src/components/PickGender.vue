@@ -2,11 +2,11 @@
   <div>
     <h1>Пол</h1>
     <div v-for="gender of genders" v-bind:key="gender">
-      <input type="radio" id="a" name="gender">
-      <label for="a">{{ gender }}</label>
+      <label >
+        <input type="radio" v-model="picked_gender" name="picked-gender" :value="gender">
+      </label> {{ gender }}
     </div>
   </div>
-
 </template>
 
 <script>
@@ -14,11 +14,12 @@ export default {
   data() {
     return {
       genders: [
-        'Мужчина',
-        'Женщина',
-        'Вертолет',
-        'Еще один гендер'
-      ]
+        'Male',
+        'Female',
+        'Helicopter',
+        'Yet another gender'
+      ],
+      picked_gender: 'Helicopter'
     };
   },
   name: "PickGender"
