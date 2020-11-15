@@ -1,4 +1,4 @@
-# registration_form
+# frontend
 
 ## Project setup
 ```
