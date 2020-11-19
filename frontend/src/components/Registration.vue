@@ -1,38 +1,51 @@
 <template>
-  <form @submit="submitForm">
-    <div v-for="gender in genders" v-bind:key="gender">
-      <label>
-        <input type="radio" name="picked_gender" v-model="picked_gender"
-               :value="gender">
-      </label>{{ gender }}
+  <form @submit="submitForm" class="container-fluid">
+    <h1>Форма регистрации</h1>
+    <div class="columns">
+      <div class="column col-md-auto">
+        <div v-for="gender in genders" v-bind:key="gender">
+          <label>
+            <input type="radio" name="picked_gender" v-model="picked_gender"
+                   :value="gender">
+          </label>
+          <span> {{ gender }} </span>
+        </div>
+        <label>
+          <input placeholder="Введите имя " v-model="name" class="bg-dark">
+        </label>
+        <label>
+          <input placeholder="Введите фамилию " v-model="last_name"
+                 class="bg-dark ">
+        </label>
+        <br>
+        <span v-if="errors.last_name" class="text-error">{{
+            errors.last_name
+          }}</span>
+        <span v-if="errors.name" class="text-error">{{ errors.name }}</span>
+        <br>
+        <label>
+          <input placeholder="Введите свою почту" v-model="mail"
+                 class="bg-dark inputs  ">
+        </label>
+        <br>
+        <span v-if="errors.mail" class="text-error">{{ this.errors.mail }}</span>
+        <br>
+        <label>
+          <input placeholder="Введите номер своего телефона"
+                 v-model="phone_number" class="bg-dark inputs">
+        </label>
+        <br>
+        <span v-if="errors.phone_number"
+              class="text-error">{{ this.errors.phone_number }}</span>
+        <br>
+        <label>
+            <textarea placeholder="Напишите немного о себе"
+                      v-model="text_description" class="bg-dark"></textarea>
+        </label>
+        <br>
+        <input type="submit" value="submit" class="btn btn-success">
+      </div>
     </div>
-    <br>
-    <label>
-      <input placeholder="Введите имя" v-model="name">
-    </label>
-    <br>
-    <p v-if="errors.name">{{ errors.name }}</p>
-    <label>
-      <input placeholder="Введите фамилию" v-model="last_name">
-    </label>
-    <br>
-    <p v-if="errors.last_name">{{ errors.last_name }}</p>
-    <label>
-      <input placeholder="Введите свою почту" v-model="mail">
-    </label>
-    <br>
-    <p v-if="errors.mail">{{ this.errors.mail }}</p>
-    <label>
-      <input placeholder="Введите номер своего телефона" v-model="phone_number">
-    </label>
-    <br>
-    <p v-if="errors.phone_number">{{ this.errors.phone_number }}</p>
-    <label>
-      <textarea rows="9" placeholder="Напишите немного о себе"
-                v-model="text_description"></textarea>
-    </label>
-    <br>
-    <input type="submit" value="submit">
   </form>
 </template>
 
@@ -70,10 +83,10 @@ export default {
     submitForm(event) {
       let found_error = false;
 
-      let validator = this.nameValidator(this.name, "Напишите свое имя", "Неправильно введено имя")
+      let validator = this.nameValidator(this.name, "Напишите свое имя ", "Неправильно введено имя ")
       found_error = validator[0] === undefined ? found_error : true
       this.errors.name = validator[1]
-      validator = this.nameValidator(this.last_name, "Напишите свою фамилию", "Неправильно введена фамилия")
+      validator = this.nameValidator(this.last_name, "Напишите свою фамилию ", "Неправильно введена фамилия ")
       found_error = validator[0] === undefined ? found_error : true
       this.errors.last_name = validator[1]
       found_error = this.emailValidator() === undefined ? found_error : true
@@ -99,7 +112,7 @@ export default {
 
 
     nameValidator(name, emptyError = '', incorrectError = '') {
-      let re = /^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/
+      let re = /^([А-Я][а-яё]{1,23}|[A-Z][a-z]{1,23})$/
       if (name === '') {
         return [true, emptyError]
       }
@@ -112,26 +125,26 @@ export default {
 
     emailValidator() {
       if (this.mail === '') {
-        this.errors.mail = "Введите почту"
+        this.errors.mail = "Введите почту "
         return true
       } else if (!this.isCorrectMail(this.mail)) {
-        this.errors.mail = "Почта введена неверно"
+        this.errors.mail = "Почта введена неверно "
         return true
       } else if (this.users.find(e => e.mail === this.mail)) {
-        this.errors.mail = "Эта почта уже зарегистрирована"
+        this.errors.mail = "Эта почта уже зарегистрирована "
         return true
       }
       this.errors.mail = ""
     },
     phoneValidator() {
       if (this.phone_number === '') {
-        this.errors.phone_number = "Введите номер телефона"
+        this.errors.phone_number = "Введите номер телефона "
         return true
       } else if (!this.isCorrectNumber(this.phone_number)) {
-        this.errors.phone_number = "Номер телефона введен неправильно. Пример номера: +7999111-11-66"
+        this.errors.phone_number = "Номер телефона введен неправильно. Пример номера: +79991234567 "
         return true
       } else if (this.users.find(e => e.phone_number === this.phone_number)) {
-        this.errors.phone_number = "Этот номер уже зарегистрирован"
+        this.errors.phone_number = "Этот номер уже зарегистрирован "
         return true
       }
       this.errors.phone_number = ""
@@ -143,7 +156,7 @@ export default {
       return re.test(email)
     },
     isCorrectNumber(num) {
-      let re = /^[0-9+]{1,}[0-9-]{3,15}$/
+      let re = /^[+][0-9]{10,15}$/
       return re.test(num)
     },
   },
@@ -154,4 +167,12 @@ export default {
 </script>
 
 <style>
+textarea {
+  width: 25%;
+  height: 200px;
+  resize: vertical;
+}
+.inputs {
+  width: 20%;
+}
 </style>

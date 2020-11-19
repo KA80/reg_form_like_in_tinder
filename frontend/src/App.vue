@@ -14,8 +14,11 @@ export default {
 </script>
 
 <style>
+@import url(https://fonts.googleapis.com/css?family=Work+Sans);
+
 body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  background-image: url("assets/background.jpg");
+  font-family: "Work Sans", "Segoe UI", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
