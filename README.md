@@ -6,13 +6,7 @@
 ````
 $ cd frontend
 
-$ npm install -g @vue/cli
-
-$ npm install pug --save-dev
-
-$ npm install axios vue-axios --save
-
-$ npm install vuex --save
+$ npm install
 ````
 
 #### Install python packages
