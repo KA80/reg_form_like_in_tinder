@@ -13,7 +13,7 @@ $ npm install
 ````
 $ cd backend
 
-$ pip install django djangorestframework django-cors-headers
+$ pip install -r requirements.txt
 ````
 
 #### Make migrations 
